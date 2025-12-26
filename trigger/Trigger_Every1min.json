@@ -1,0 +1,25 @@
+{
+	"name": "Trigger_Every1min",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Ingest_Product_Data",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 1,
+				"startTime": "2025-12-26T08:37:00",
+				"endTime": "2025-12-26T08:45:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

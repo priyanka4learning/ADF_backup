@@ -1,0 +1,24 @@
+{
+	"name": "swathi_sqldb_kv_ls",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "swathisqldbserver.database.windows.net",
+			"database": "swathisqldb",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "swathidbserver",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "swathi_kv_ls",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "SQLDatabasePassword"
+			}
+		}
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"name": "swathi_kv_ls",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://swathikv.vault.azure.net/"
+		}
+	}
+}

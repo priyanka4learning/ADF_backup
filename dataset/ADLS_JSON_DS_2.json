@@ -1,0 +1,20 @@
+{
+	"name": "ADLS_JSON_DS_2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "swathi_adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "CSV2",
+				"fileSystem": "landing"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

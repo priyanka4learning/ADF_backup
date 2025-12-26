@@ -1,0 +1,44 @@
+{
+	"name": "SCDType2DT_Table_DS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "swathi_sqldb_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "name",
+				"type": "varchar"
+			},
+			{
+				"name": "city",
+				"type": "varchar"
+			},
+			{
+				"name": "active_flag",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "start_date",
+				"type": "date"
+			},
+			{
+				"name": "end_date",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SCDType2_dt"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

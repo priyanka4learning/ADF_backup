@@ -1,0 +1,19 @@
+{
+	"name": "MetadataDrivenCopyTask_ofb_ControlDS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "swathi_sqldb_ls",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "MetadataDrivenCopyTask_ofb_20251219"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": "ControlTable_Swathi"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

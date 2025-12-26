@@ -1,0 +1,11 @@
+{
+	"name": "swathi_sqldb_sas_ls",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"sasUri": "jdbc:sqlserver://swathisqldbserver.database.windows.net:1433;database=swathisqldb;user=swathidbserver@swathisqldbserver;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
+		}
+	}
+}

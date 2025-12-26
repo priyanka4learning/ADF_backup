@@ -1,0 +1,19 @@
+{
+	"name": "Binary_ADLS_DS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "swathi_adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Copy_Dest",
+				"fileSystem": "landing"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
