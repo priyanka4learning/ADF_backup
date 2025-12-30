@@ -1,0 +1,9 @@
+{
+	"name": "Swathi4ADF2",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "45d3b699-3c45-43da-9207-a99ea1151b5c",
+		"tenantId": "1237bcd2-a8d2-497b-a788-3400df917832"
+	}
+}
