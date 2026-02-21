@@ -1,6 +1,5 @@
 {
 	"name": "swathi_sqldb_kv_ls",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureSqlDatabase",
@@ -20,5 +19,6 @@
 				"secretName": "SQLDatabasePassword"
 			}
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
