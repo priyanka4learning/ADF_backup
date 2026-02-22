@@ -1,0 +1,23 @@
+{
+	"name": "Getmetadate_DS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "swathi_adls_ls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Getmetadata_example",
+				"fileSystem": "landing"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
