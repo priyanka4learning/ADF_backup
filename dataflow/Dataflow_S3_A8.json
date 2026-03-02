@@ -1,0 +1,128 @@
+{
+	"name": "Dataflow_S3_A8",
+	"properties": {
+		"description": "Create a pipeline to read the Customer table data from SQL and CustomerAddress data from CSV, join both of them,\nand then save the result where customer id> 1000 & Customer id <2000 in ascending order as a Parquet file.",
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Customer_SQL_DB_DS",
+						"type": "DatasetReference"
+					},
+					"name": "CustSrc"
+				},
+				{
+					"linkedService": {
+						"referenceName": "swathi_adls_ls",
+						"type": "LinkedServiceReference"
+					},
+					"name": "CustAddressSrc"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "swathi_adls_ls",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				},
+				{
+					"name": "filter1"
+				},
+				{
+					"name": "sort1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          CustomerID as integer,",
+				"          NameStyle as boolean,",
+				"          Title as string,",
+				"          FirstName as string,",
+				"          MiddleName as string,",
+				"          LastName as string,",
+				"          Suffix as string,",
+				"          CompanyName as string,",
+				"          SalesPerson as string,",
+				"          EmailAddress as string,",
+				"          Phone as string,",
+				"          PasswordHash as string,",
+				"          PasswordSalt as string,",
+				"          rowguid as string,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> CustSrc",
+				"source(output(",
+				"          CustomerID as integer,",
+				"          AddressID as short,",
+				"          AddressType as string,",
+				"          rowguid as string,",
+				"          ModifiedDate as string",
+				"     ),",
+				"     useSchema: false,",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'delimited',",
+				"     fileSystem: 'landing',",
+				"     folderPath: 'Assignment_files',",
+				"     fileName: 'SalesLT.CustomerAddress.txt',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '\\\"',",
+				"     columnNamesAsHeader: true) ~> CustAddressSrc",
+				"CustSrc, CustAddressSrc join(CustSrc@CustomerID == CustAddressSrc@CustomerID,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 filter(CustSrc@CustomerID > 1000 && CustSrc@CustomerID < 2000) ~> filter1",
+				"filter1 sort(asc(CustSrc@CustomerID, true)) ~> sort1",
+				"sort1 select(mapColumn(",
+				"          CustomerID = CustSrc@CustomerID,",
+				"          NameStyle,",
+				"          Title,",
+				"          FirstName,",
+				"          MiddleName,",
+				"          LastName,",
+				"          Suffix,",
+				"          CompanyName,",
+				"          SalesPerson,",
+				"          EmailAddress,",
+				"          Phone,",
+				"          PasswordHash,",
+				"          PasswordSalt,",
+				"          rowguid = CustSrc@rowguid,",
+				"          ModifiedDate = CustSrc@ModifiedDate,",
+				"          AddressID,",
+				"          AddressType",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     fileSystem: 'landing',",
+				"     folderPath: 'Output_files',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}
