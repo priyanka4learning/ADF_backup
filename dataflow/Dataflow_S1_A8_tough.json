@@ -28,6 +28,9 @@
 				},
 				{
 					"name": "alterRow1"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -53,8 +56,20 @@
 				"     ignoreNoFilesFound: false) ~> Custsrc",
 				"Custsrc filter(CustomerID%2!=0) ~> filter1",
 				"filter1 alterRow(upsertIf(1==1)) ~> alterRow1",
-				"alterRow1 sink(allowSchemaDrift: true,",
+				"alterRow1 select(mapColumn(",
+				"          CustomerID,",
+				"          FirstName,",
+				"          EmailAddress",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          CID as integer,",
+				"          Name as string,",
+				"          mailid as string",
+				"     ),",
 				"     format: 'table',",
 				"     store: 'sqlserver',",
 				"     schemaName: 'dbo',",
@@ -68,9 +83,9 @@
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
-				"          CustomerID,",
-				"          FirstName,",
-				"          EmailAddress",
+				"          CID = CustomerID,",
+				"          Name = FirstName,",
+				"          mailid = EmailAddress",
 				"     )) ~> sink1"
 			]
 		}
