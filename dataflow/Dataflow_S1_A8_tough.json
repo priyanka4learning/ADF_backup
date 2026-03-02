@@ -66,7 +66,12 @@
 				"     keys:['CustomerID'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          CustomerID,",
+				"          FirstName,",
+				"          EmailAddress",
+				"     )) ~> sink1"
 			]
 		}
 	}
