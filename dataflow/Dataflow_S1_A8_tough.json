@@ -78,7 +78,7 @@
 				"     updateable: true,",
 				"     deletable: false,",
 				"     upsertable: false,",
-				"     keys:['CustomerID'],",
+				"     keys:['CID'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError',",
