@@ -74,6 +74,7 @@
 				"     escapeChar: '\\\\',",
 				"     quoteChar: '\\\"',",
 				"     columnNamesAsHeader: false,",
+				"     filePattern:'Product',",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
