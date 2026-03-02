@@ -1,5 +1,5 @@
 {
-	"name": "Dataflow_S5_A8",
+	"name": "Dataflow_S4_A8",
 	"properties": {
 		"description": "create a pipeline to read the Product CSV file, and calculate the highest listPrice of any product under each productcategory.\nEnsure that product shouldn't be of blue in color and save the result as CSV file inside ProductResult folder.",
 		"type": "MappingDataFlow",
