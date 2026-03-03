@@ -1,0 +1,10 @@
+{
+	"name": "swathi_kv_ls1",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://swathikv.vault.azure.net/"
+		}
+	}
+}
