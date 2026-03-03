@@ -1,0 +1,168 @@
+{
+	"name": "Dataflow_SCDType3_S2_A8_Tough",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "swathi_adls_ls",
+						"type": "LinkedServiceReference"
+					},
+					"name": "SrcFile"
+				},
+				{
+					"linkedService": {
+						"referenceName": "swathi_sqldb_ls",
+						"type": "LinkedServiceReference"
+					},
+					"name": "DBSrc"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "swathi_sqldb_ls",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"linkedService": {
+						"referenceName": "swathi_sqldb_ls",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				},
+				{
+					"name": "join1"
+				},
+				{
+					"name": "split1"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select2"
+				},
+				{
+					"name": "alterRow1"
+				},
+				{
+					"name": "select3"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          id as integer,",
+				"          name as string,",
+				"          city as string",
+				"     ),",
+				"     useSchema: false,",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'delimited',",
+				"     fileSystem: 'landing',",
+				"     folderPath: 'Assignment_files',",
+				"     fileName: 'employee_input.txt',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '\\\"',",
+				"     columnNamesAsHeader: true) ~> SrcFile",
+				"source(output(",
+				"          id as integer,",
+				"          name as string,",
+				"          city as string,",
+				"          name_old as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'sqlserver',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'Employee_SCDType3',",
+				"     isolationLevel: 'READ_UNCOMMITTED') ~> DBSrc",
+				"DBSrc select(mapColumn(",
+				"          DB_id = id,",
+				"          DB_name = name,",
+				"          DB_city = city,",
+				"          DB_name_old = name_old",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"SrcFile, select1 join(id == DB_id,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 split(!isNull(id),",
+				"     disjoint: false) ~> split1@(Matched, Unmatched)",
+				"split1@Matched derive(Name_old = DB_name) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          DB_id,",
+				"          DB_name,",
+				"          DB_city,",
+				"          DB_name_old",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"select2 alterRow(upsertIf(1==1)) ~> alterRow1",
+				"split1@Unmatched select(mapColumn(",
+				"          id,",
+				"          name,",
+				"          city",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select3",
+				"alterRow1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          id as integer,",
+				"          name as string,",
+				"          city as string,",
+				"          name_old as string",
+				"     ),",
+				"     format: 'table',",
+				"     store: 'sqlserver',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'Employee_SCDType3',",
+				"     insertable: false,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: true,",
+				"     keys:['id'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          id = DB_id,",
+				"          name = DB_name,",
+				"          city = DB_city,",
+				"          name_old = DB_name_old",
+				"     )) ~> sink1",
+				"select3 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'table',",
+				"     store: 'sqlserver',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'Employee_SCDType3',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 2,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
+			]
+		}
+	}
+}
