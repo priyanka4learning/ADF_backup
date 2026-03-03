@@ -85,29 +85,12 @@
 										"fileExtension": ".txt"
 									}
 								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
+								"enableStaging": false
 							},
 							"inputs": [
 								{
 									"referenceName": "HWM_ADLS_DS",
 									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "ADLS_CSV_Generic_DS",
-									"type": "DatasetReference",
-									"parameters": {
-										"folderNameParam": "HWM"
-									}
 								}
 							]
 						}

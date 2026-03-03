@@ -76,15 +76,7 @@
 										"fileExtension": ".txt"
 									}
 								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
+								"enableStaging": false
 							},
 							"inputs": [
 								{
@@ -93,18 +85,6 @@
 									"parameters": {
 										"schemaNameParam": "salesLT",
 										"tableNameParam": {
-											"value": "@item().table_name",
-											"type": "Expression"
-										}
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "ADLS_CSV_Generic_DS",
-									"type": "DatasetReference",
-									"parameters": {
-										"folderNameParam": {
 											"value": "@item().table_name",
 											"type": "Expression"
 										}

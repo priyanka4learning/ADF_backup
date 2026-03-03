@@ -32,19 +32,7 @@
 						}
 					},
 					"enableStaging": false
-				},
-				"outputs": [
-					{
-						"referenceName": "ADLS_CSV_Generic_DS",
-						"type": "DatasetReference",
-						"parameters": {
-							"folderNameParam": {
-								"value": "Customer/@{formatDateTime(utcNow(),'yyyy')}/@{formatDateTime(utcNow(),'MM')}/@{formatDateTime(utcNow(),'dd')}",
-								"type": "Expression"
-							}
-						}
-					}
-				]
+				}
 			}
 		],
 		"annotations": [],

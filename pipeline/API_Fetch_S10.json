@@ -42,15 +42,6 @@
 						"referenceName": "RestResource1",
 						"type": "DatasetReference"
 					}
-				],
-				"outputs": [
-					{
-						"referenceName": "ADLS_CSV_Generic_DS",
-						"type": "DatasetReference",
-						"parameters": {
-							"folderNameParam": "API"
-						}
-					}
 				]
 			}
 		],

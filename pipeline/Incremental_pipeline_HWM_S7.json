@@ -101,16 +101,7 @@
 						}
 					},
 					"enableStaging": false
-				},
-				"outputs": [
-					{
-						"referenceName": "ADLS_CSV_Generic_DS",
-						"type": "DatasetReference",
-						"parameters": {
-							"folderNameParam": "Customer"
-						}
-					}
-				]
+				}
 			},
 			{
 				"name": "Update HWM File",

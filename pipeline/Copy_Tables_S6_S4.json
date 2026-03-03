@@ -71,15 +71,7 @@
 										"fileExtension": ".txt"
 									}
 								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
-								}
+								"enableStaging": false
 							},
 							"inputs": [
 								{
@@ -91,15 +83,6 @@
 											"value": "@item().table_name",
 											"type": "Expression"
 										}
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "ADLS_CSV_Generic_DS",
-									"type": "DatasetReference",
-									"parameters": {
-										"folderNameParam": "Product"
 									}
 								}
 							]
