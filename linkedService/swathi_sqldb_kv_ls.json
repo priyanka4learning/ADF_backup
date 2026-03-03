@@ -13,7 +13,7 @@
 			"password": {
 				"type": "AzureKeyVaultSecret",
 				"store": {
-					"referenceName": "swathi_kv_ls",
+					"referenceName": "swathi_kv_ls1",
 					"type": "LinkedServiceReference"
 				},
 				"secretName": "SQLDatabasePassword"
