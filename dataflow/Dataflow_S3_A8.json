@@ -6,6 +6,10 @@
 		"typeProperties": {
 			"sources": [
 				{
+					"linkedService": {
+						"referenceName": "swathi_adls_ls",
+						"type": "LinkedServiceReference"
+					},
 					"name": "CustSrc"
 				},
 				{
@@ -55,10 +59,20 @@
 				"          PasswordHash as string,",
 				"          PasswordSalt as string,",
 				"          rowguid as string,",
-				"          ModifiedDate as timestamp",
+				"          ModifiedDate as string",
 				"     ),",
+				"     useSchema: false,",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false) ~> CustSrc",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'delimited',",
+				"     fileSystem: 'landing',",
+				"     folderPath: 'Assignment_files',",
+				"     fileName: 'SalesLT.Customer.txt',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '\\\"',",
+				"     columnNamesAsHeader: true) ~> CustSrc",
 				"source(output(",
 				"          CustomerID as integer,",
 				"          AddressID as short,",

@@ -15,6 +15,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"dataset": {
+						"referenceName": "ADLS_CSV_Generic_DS",
+						"type": "DatasetReference"
+					},
 					"logStorageSettings": {
 						"linkedServiceName": {
 							"referenceName": "swathi_adls_ls",
