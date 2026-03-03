@@ -6,10 +6,6 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"dataset": {
-						"referenceName": "Customer_SQL_DB_DS",
-						"type": "DatasetReference"
-					},
 					"name": "CustSrc"
 				},
 				{
@@ -62,9 +58,7 @@
 				"          ModifiedDate as timestamp",
 				"     ),",
 				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> CustSrc",
+				"     validateSchema: false) ~> CustSrc",
 				"source(output(",
 				"          CustomerID as integer,",
 				"          AddressID as short,",
