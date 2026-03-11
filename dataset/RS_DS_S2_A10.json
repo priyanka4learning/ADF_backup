@@ -1,0 +1,23 @@
+{
+	"name": "RS_DS_S2_A10",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RS4_S2_A10",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Country_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "@dataset().Country_name",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	}
+}
