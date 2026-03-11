@@ -1,0 +1,12 @@
+{
+	"name": "RS4_S2_A10",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://restcountries.com/v3.1/name/",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
