@@ -78,7 +78,13 @@
 				"userProperties": [],
 				"typeProperties": {
 					"method": "POST",
-					"url": "https://prod-20.northcentralus.logic.azure.com:443/workflows/36ed994d5e504dfd99209cbc84f76309/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=19Mi-T7bGMzlP1LZq-G_QC2dZFZqf-1MzyuU4kIOF1g"
+					"url": "https://prod-20.northcentralus.logic.azure.com:443/workflows/36ed994d5e504dfd99209cbc84f76309/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=19Mi-T7bGMzlP1LZq-G_QC2dZFZqf-1MzyuU4kIOF1g",
+					"body": {
+						"toEmailId": "priyanka4learning@gmail.com",
+						"pipeline": "pipeline1",
+						"status": "pass",
+						"message": "Thank you for choosing me"
+					}
 				}
 			}
 		],
